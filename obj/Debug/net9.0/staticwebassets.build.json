@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "vlHPeZZsJmcHLIj8h+jkDiuZ9gHIqFpaRMNoZLE9noI=",
+  "Source": "ClinicaCanina.API",
+  "BasePath": "_content/ClinicaCanina.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
