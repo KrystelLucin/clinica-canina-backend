@@ -1,5 +1,8 @@
 using ClinicaCanina.API.Data;
 using ClinicaCanina.API.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClinicaCanina.API.Controllers
 {

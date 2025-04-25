@@ -5,8 +5,6 @@ namespace ClinicaCanina.API.Controllers
 {
     public class DuenosController : BaseController<Dueno, string>
     {
-        public DuenosController(ClinicaContext context) : base(context)
-        {
-        }
+        public DuenosController(ClinicaContext context) : base(context){}
     }
 }

@@ -13,7 +13,7 @@ namespace ClinicaCanina.API.Controllers
     [Route("api/[controller]")]
     public abstract class BaseController<T, TKey> : ControllerBase where T : class
     {
-        protected readonly ClinicaContext _context;
+        protected ClinicaContext _context;
 
         public BaseController(ClinicaContext context)
         {
