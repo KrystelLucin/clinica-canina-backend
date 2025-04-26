@@ -51,10 +51,12 @@ namespace ClinicaCanina.API.Controllers
             var user = await _context.Usuarios
                 .FirstOrDefaultAsync(u => u.NombreUsuario == request.NombreUsuario && u.DeletedAt == null);
 
-            if (user == null || user.Bloqueado)
-                return Unauthorized("Usuario no encontrado o bloqueado.");
+            if (user == null)
+                return Unauthorized("Usuario no encontrado");
 
-            // Verificación segura
+            if (user.Bloqueado)
+                return Unauthorized("Tu cuenta ha sido bloqueada. Contacta al administrador.");
+
             if (!BCrypt.Net.BCrypt.Verify(request.Contrasena, user.Contrasena))
             {
                 user.IntentosFallidos++;
@@ -66,7 +68,6 @@ namespace ClinicaCanina.API.Controllers
                 return Unauthorized("Contraseña incorrecta.");
             }
 
-            // Login exitoso: resetea intentos
             user.IntentosFallidos = 0;
             user.UpdatedAt = DateTime.UtcNow;
             await _context.SaveChangesAsync();
