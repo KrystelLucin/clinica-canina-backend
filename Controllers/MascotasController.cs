@@ -13,19 +13,7 @@ namespace ClinicaCanina.API.Controllers
             _context = context;
         }
 
-        // Mascota by name
-        [Authorize]
-        [HttpGet("byNombre/{nombre}")]
-        public async Task<ActionResult<IEnumerable<Mascota>>> GetByNombre(string nombre)
-        {
-            var mascotas = await _context.Mascotas
-                .Where(m => m.Nombre.ToLower() == nombre.ToLower())
-                .ToListAsync();
-
-            return Ok(mascotas);
-        }
-
-        // Mascota by dueño
+        // Mascota by dueño (nombre)
         [Authorize]
         [HttpGet("byDueno/{nombreDueno}")]
         public async Task<ActionResult<IEnumerable<Mascota>>> GetByNombreDueno(string nombreDueno)
@@ -36,6 +24,18 @@ namespace ClinicaCanina.API.Controllers
                         d.Id == m.IdDueno &&
                         d.NombreCompleto.ToLower().Contains(nombreDueno.ToLower()) &&
                         (d.DeletedAt == null))) // Solo dueños activos
+                .ToListAsync();
+
+            return Ok(mascotas);
+        }
+
+        // Mascota by dueño (id)
+        [Authorize]
+        [HttpGet("byDuenoId/{id}")]
+        public async Task<ActionResult<IEnumerable<Mascota>>> GetByDuenoId(string id)
+        {
+            var mascotas = await _context.Mascotas
+                .Where(m => m.IdDueno == id && m.DeletedAt == null)
                 .ToListAsync();
 
             return Ok(mascotas);
