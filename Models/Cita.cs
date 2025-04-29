@@ -21,6 +21,9 @@ namespace ClinicaCanina.API.Models
         [Column("id_profesional")]
         public int? IdProfesional { get; set; }
 
+        [Column("id_servicio")]
+        public int? IdServicio { get; set; }
+
         [Column("motivo")]
         public string? Motivo { get; set; }
 
